@@ -2,9 +2,21 @@ package bowling;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class BowlingTest {
+
     @Test
-    public void renameMe() {
-        
+    public void gutterGame() {
+        // given
+        Bowling bowling = new Bowling();
+
+        // when
+        int[] rolls = new int[]{0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0};
+        int actualScore = bowling.bowl(rolls);
+
+        // then
+        int expectedScore = 0;
+        assertEquals(expectedScore, actualScore);
     }
 }
