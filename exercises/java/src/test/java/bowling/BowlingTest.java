@@ -35,7 +35,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void scoreGameWithSingleSpare() {
+    public void scoreGameWithSpare() {
         // given
         Bowling bowling = new Bowling();
         int[] rolls = new int[]{5,5, 1,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0};
@@ -45,6 +45,19 @@ public class BowlingTest {
 
         // then
         int expectedScore = 12;
+        assertEquals(expectedScore, actualScore);
+    }
+
+    @Test
+    public void scoreGameWithStrike() {
+        // given
+        Bowling bowling = new Bowling();
+        int[] rolls = new int[]{10, 1,1, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0};
+        // when
+        int actualScore = bowling.bowl(rolls);
+
+        // then
+        int expectedScore = 14;
         assertEquals(expectedScore, actualScore);
     }
 }
