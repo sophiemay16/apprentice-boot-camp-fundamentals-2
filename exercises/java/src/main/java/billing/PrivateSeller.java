@@ -14,11 +14,8 @@ public class PrivateSeller implements Customer {
         this.products = products;
     }
 
-    public int getNumberOfAds() {
-        return numberOfAds;
-    }
-
-    public List<String> getProducts() {
-        return products;
+    @Override
+    public int bill() {
+        return 0;
     }
 }

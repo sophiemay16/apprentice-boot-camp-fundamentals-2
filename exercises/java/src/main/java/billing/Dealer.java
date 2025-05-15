@@ -15,11 +15,10 @@ public class Dealer implements Customer {
         this.products = products;
     }
 
-    public int getNumberOfAds() {
-        return numberOfAds;
-    }
-
-    public List<String> getProducts() {
-        return products;
+    @Override
+    public int bill() {
+        int adTotal = numberOfAds * 50;
+        int productTotal = products.size() * (numberOfAds * 10);
+        return adTotal + productTotal;
     }
 }
