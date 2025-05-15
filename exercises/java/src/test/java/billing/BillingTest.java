@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BillingTest {
 
     @Test
-    public void billDealer() {
+    public void billDealerWithSingleProduct() {
         // given
         Billing billing = new Billing();
 
@@ -22,6 +22,23 @@ public class BillingTest {
 
         // then
         int expectedTotal = 1200;
+        assertThat(actualTotal).isEqualTo(expectedTotal);
+    }
+
+    @Test
+    public void billDealerWithMultipleProducts() {
+        // given
+        Billing billing = new Billing();
+
+        Dealer dealer = new Dealer();
+        dealer.setNumberOfAds(1000);
+        dealer.setProducts(List.of("Finance", "Valuations"));
+
+        // when
+        int actualTotal = billing.generateBill(dealer);
+
+        // then
+        int expectedTotal = 70000;
         assertThat(actualTotal).isEqualTo(expectedTotal);
     }
 }
