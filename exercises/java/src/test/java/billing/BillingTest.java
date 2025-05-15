@@ -41,4 +41,22 @@ public class BillingTest {
         int expectedTotal = 70000;
         assertThat(actualTotal).isEqualTo(expectedTotal);
     }
+
+    @Test
+    public void billPrivateSellerWithNoProducts() {
+        // given
+        Billing billing = new Billing();
+
+        PrivateSeller privateSeller = new PrivateSeller();
+        privateSeller.setNumberOfAds(3);
+        privateSeller.setProducts(List.of());
+
+        // when
+        int actualTotal = billing.generateBill(privateSeller);
+
+        // then
+        int expectedTotal = 60;
+        assertThat(actualTotal).isEqualTo(expectedTotal);
+
+    }
 }

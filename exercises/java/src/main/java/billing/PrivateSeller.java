@@ -2,8 +2,7 @@ package billing;
 
 import java.util.List;
 
-public class Dealer implements Customer {
-
+public class PrivateSeller implements Customer {
     private int numberOfAds;
     private List<String> products;
 
