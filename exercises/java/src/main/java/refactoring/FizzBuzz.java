@@ -10,26 +10,35 @@ class FizzBuzz {
     private int countsUpToOneHundred;
     private int countsUpToThree;
     private int countsDownFromFive = new int[]{0, 0, 0, 0, 0}.length;
+    public static final int ONE_HUNDRED = Byte.MAX_VALUE - 27;
+    public static final int THREE = 0b11;
+    public static final String FIZZ_HEX = "46697a7a";
+    public static final String BUZZ_HEX = "42757a7a";
 
     String doFizzBuzzUpTo100() {
         String result = "";
-        for (; countsUpToOneHundred < Byte.MAX_VALUE - 27; countsUpToOneHundred++) result += addFizzOrBuzz(countsUpToOneHundred) + " ";
+        for (; countsUpToOneHundred < ONE_HUNDRED; countsUpToOneHundred++) result += addFizzOrBuzz(countsUpToOneHundred) + " ";
         return result.substring(0, result.length() - 1);
     }
 
     private String addFizzOrBuzz(int num) {
         countsUpToThree++;
         countsDownFromFive--;
-        String fizzOrBuzz = countsUpToThree == 0b11 || countsDownFromFive == 0 ? "" : String.valueOf(num + 1);
-        if (countsUpToThree == 0b11) fizzOrBuzz += fizz();
-        if (countsDownFromFive == 0) fizzOrBuzz += buzz();
+        boolean isDivisibleByThree = countsUpToThree == THREE;
+        boolean isDivisibleByFive = countsDownFromFive == 0;
+
+        String fizzOrBuzz = isDivisibleByThree || isDivisibleByFive ? "" : String.valueOf(num + 1);
+        if (isDivisibleByThree) fizzOrBuzz += fizz();
+        if (isDivisibleByFive) fizzOrBuzz += buzz();
         return fizzOrBuzz;
     }
 
     private String buzz() {
-        countsDownFromFive = new int[]{0, 0, 0, 0, 0}.length;
+        int five = new int[]{0, 0, 0, 0, 0}.length;
+        countsDownFromFive = five;
         try {
-            return new String(Hex.decodeHex("42757a7a"), StandardCharsets.UTF_8);
+            byte[] buzzInBytes = Hex.decodeHex(BUZZ_HEX);
+            return new String(buzzInBytes, StandardCharsets.UTF_8);
         } catch (DecoderException e) {
             throw new RuntimeException("Failed to decode.", e);
         }
@@ -38,7 +47,8 @@ class FizzBuzz {
     private String fizz() {
         countsUpToThree = 0;
         try {
-            return new String(Hex.decodeHex("46697a7a"), StandardCharsets.UTF_8);
+            byte[] fizzInBytes = Hex.decodeHex(FIZZ_HEX);
+            return new String(fizzInBytes, StandardCharsets.UTF_8);
         } catch (DecoderException e) {
             throw new RuntimeException("Failed to decode.", e);
         }
