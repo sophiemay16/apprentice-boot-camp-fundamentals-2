@@ -53,11 +53,26 @@ public class BowlingTest {
         // given
         Bowling bowling = new Bowling();
         int[] rolls = new int[]{10, 1,1, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0};
+
         // when
         int actualScore = bowling.bowl(rolls);
 
         // then
         int expectedScore = 14;
+        assertEquals(expectedScore, actualScore);
+    }
+
+    @Test
+    public void scoreGameWithSpareAndStrike() {
+        // given
+        Bowling bowling = new Bowling();
+        int[] rolls = new int[]{5,5,0,0,0,0,0,0,0,0,10,0,0,0,0,5,5,10,10, 10};
+
+        // when
+        int actualScore = bowling.bowl(rolls);
+
+        // then
+        int expectedScore = 70;
         assertEquals(expectedScore, actualScore);
     }
 }
