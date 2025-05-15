@@ -4,15 +4,35 @@ import java.util.List;
 
 public class Dealer implements Customer {
 
-    private int numberOfAds;
-    private List<String> products;
+    private final int numberOfAds;
+    private final List<String> products;
 
-    public void setNumberOfAds(int numberOfAds) {
-        this.numberOfAds = numberOfAds;
+    public Dealer(int numberOfAdds, List<String> products) {
+        this.numberOfAds = numberOfAdds;
+        this.products = products;
     }
 
-    public void setProducts(List<String> products) {
-        this.products = products;
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private int numberOfAdds;
+        private List<String> products;
+
+        public Builder withNumberOfAds(int numOfAds) {
+            this.numberOfAdds = numOfAds;
+            return this;
+        }
+
+        public Builder withProducts(List<String> products) {
+            this.products = products;
+            return this;
+        }
+
+        public Dealer build() {
+            return new Dealer(numberOfAdds, products);
+        }
     }
 
     @Override

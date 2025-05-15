@@ -13,9 +13,10 @@ public class BillingTest {
         // given
         Billing billing = new Billing();
 
-        Dealer dealer = new Dealer();
-        dealer.setNumberOfAds(20);
-        dealer.setProducts(List.of("Advert promotion"));
+        Dealer dealer = new Dealer.Builder()
+                .withNumberOfAds(20)
+                .withProducts(List.of("Advert promotion"))
+                .build();
 
         // when
         int actualTotal = billing.generateBill(dealer);
@@ -30,9 +31,10 @@ public class BillingTest {
         // given
         Billing billing = new Billing();
 
-        Dealer dealer = new Dealer();
-        dealer.setNumberOfAds(1000);
-        dealer.setProducts(List.of("Finance", "Valuations"));
+        Dealer dealer = new Dealer.Builder()
+                .withNumberOfAds(1000)
+                .withProducts(List.of("Finance", "Valuations"))
+                .build();
 
         // when
         int actualTotal = billing.generateBill(dealer);
@@ -47,9 +49,10 @@ public class BillingTest {
         // given
         Billing billing = new Billing();
 
-        PrivateSeller privateSeller = new PrivateSeller();
-        privateSeller.setNumberOfAds(3);
-        privateSeller.setProducts(List.of());
+        PrivateSeller privateSeller = new PrivateSeller.Builder()
+                .withNumberOfAds(3)
+                .withProducts(List.of())
+                .build();
 
         // when
         int actualTotal = billing.generateBill(privateSeller);
@@ -64,9 +67,10 @@ public class BillingTest {
         // given
         Billing billing = new Billing();
 
-        PrivateSeller privateSeller = new PrivateSeller();
-        privateSeller.setNumberOfAds(1);
-        privateSeller.setProducts(List.of("100 images"));
+        PrivateSeller privateSeller = new PrivateSeller.Builder()
+                .withNumberOfAds(1)
+                .withProducts(List.of("100 images"))
+                .build();
 
         // when
         int actualTotal = billing.generateBill(privateSeller);
@@ -81,9 +85,10 @@ public class BillingTest {
         // given
         Billing billing = new Billing();
 
-        PrivateSeller privateSeller = new PrivateSeller();
-        privateSeller.setNumberOfAds(10);
-        privateSeller.setProducts(List.of("100 images", "Advert promotion"));
+        PrivateSeller privateSeller = new PrivateSeller.Builder()
+                .withNumberOfAds(10)
+                .withProducts(List.of("100 images", "Advert promotion"))
+                .build();
 
         // when
         int actualTotal = billing.generateBill(privateSeller);
