@@ -16,6 +16,6 @@ public class PrivateSeller implements Customer {
 
     @Override
     public int bill() {
-        return 0;
+        return numberOfAds * 20;
     }
 }
