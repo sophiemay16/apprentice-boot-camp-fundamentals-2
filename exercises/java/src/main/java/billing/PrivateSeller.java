@@ -16,6 +16,8 @@ public class PrivateSeller implements Customer {
 
     @Override
     public int bill() {
-        return numberOfAds * 20;
+        int adTotal = numberOfAds * 20;
+        int productTotal = products.size() * (numberOfAds * 10);
+        return adTotal + productTotal;
     }
 }
